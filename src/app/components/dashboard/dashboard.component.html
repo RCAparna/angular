@@ -1,0 +1,80 @@
+<header></header>
+<div class="container-fluid">
+    <div>
+        <p *ngIf="user" class="welcome-user">Welcome {{user.username}} !</p>
+        <p *ngIf="user" class="lastlogin">Last login: {{user.lastlogin | date}}</p>
+        <p class="balance">Account Balance: Rs. {{totalAmount}}</p>
+        <div *ngIf="serverErrorMessage" class="isError">{{serverErrorMessage}}</div>
+        <!-- <div *ngIf="dasboardSuccess" class="isSuccess">{{dasboardSuccess}}</div> -->
+        <table *ngIf="dashboardData && dashboardData.length > 0">
+            <thead>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let d of dashboardData">
+                    <td>{{d.updatedAt | date}}</td>
+                    <td>{{d.description}}</td>
+                    <td>{{d.amount}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="welcome-user">Add a new dashboard:</p>
+
+        <form [formGroup]="dashboardForm" #formReg="ngForm">
+        
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea  rows="2"  maxlength="100" minlength="100" id="description" class="form-control" formControlName="description" required></textarea>
+                <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="description.errors.required">
+                        Field is required.
+                    </div>
+                    <div *ngIf="description.errors.minlength">
+                        Must be at least 100 characters long.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" class="form-control" formControlName="amount" required>
+                <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert alert-danger">
+                    <div *ngIf="amount.errors.required">
+                        Field is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="teammember">Add a team member</label>
+                <input id="teammember" class="form-control" formControlName="teammember" required>
+                <div *ngIf="teammember.invalid && (teammember.dirty || teammember.touched)" class="alert alert-danger">
+                    <div *ngIf="teammember.errors.required">
+                        Field is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="role">Assign Role</label>
+                <select id="role" class="form-control" formControlName="role" required>
+                    <option value="Admin">Admin</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Developer">Developer</option>
+                    <option value="Tester">Tester</option>
+                </select>
+                <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert alert-danger">
+                    <div *ngIf="role.errors.required">
+                        Field is required.
+                    </div>
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-default" [disabled]="dashboardForm.invalid"
+                (click)="createdashBoard()">Create Dashboard</button>
+        </form>
+    </div>
+</div>

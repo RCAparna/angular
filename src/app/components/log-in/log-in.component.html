@@ -1,0 +1,36 @@
+<div class="container-fluid layout">
+
+  <h3>{{pageTitle}}</h3>
+<div *ngIf="isRegistered" class="isSuccess">Registration Done!</div>
+<div *ngIf="serverErrorMessage" class="isError">{{serverErrorMessage}}</div>
+  <form [formGroup]="loginForm" #formDir="ngForm">
+      <div class="form-group">
+        <label for="username">User ID</label>
+        <input id="username" type="email" ngModel email class="form-control" formControlName="username" required>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+          <div *ngIf="username.errors.required">
+            User ID is required.
+          </div>
+            <div *ngIf="!username.errors.required && username.invalid">
+              Invalid User ID
+            </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" class="form-control" formControlName="password" required>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+          <div *ngIf="password.errors.required">
+            Password is required.
+          </div>
+          <div *ngIf="password.errors.minlength">
+            Must be at least 8 characters long.
+          </div>
+        </div>
+      </div>
+      <div class="login-btn">
+      <button type="submit" class="btn btn-default" [disabled]="loginForm.invalid" (click)="login($event)">Login</button>
+      <button class="btn btn-default" (click)="register()">Register</button>
+      </div>
+  </form>
+</div>

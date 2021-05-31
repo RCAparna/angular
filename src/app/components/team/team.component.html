@@ -1,0 +1,18 @@
+<header></header>
+<div class="container-fluid">
+  <h3 *ngIf="teamData && teamData.length > 0">{{pageTitle}}</h3>
+  <h3 *ngIf="teamData && teamData.length == 0">You have not added any team member</h3>
+    <table *ngIf="teamData && teamData.length > 0">
+      <thead>
+        <th>Team Member</th>
+        <th>Role</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of teamData">
+          <td>{{d.teammember}}</td>
+          <td>{{d.role}}</td>
+        </tr>
+      </tbody>
+    </table>
+   
+</div>

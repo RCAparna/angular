@@ -1,0 +1,9 @@
+<header></header>
+<div class="container-fluid">
+    <h3 *ngIf="aboutData && aboutData.length == 0">Please add a description in the dashboard to see the About section</h3>
+    <div *ngIf="aboutData && aboutData.length > 0">
+        <div class="description" *ngFor="let d of aboutData">
+                {{d.description}}
+        </div>
+    </div>
+</div>
