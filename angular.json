@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-material-login-template": {
+    "aparna-angular-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-material-login-template",
+            "outputPath": "dist/aparna-angular-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-material-login-template:build"
+            "browserTarget": "aparna-angular-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-material-login-template:build:production"
+              "browserTarget": "aparna-angular-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-material-login-template:build"
+            "browserTarget": "aparna-angular-app:build"
           }
         },
         "test": {
@@ -112,18 +112,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-material-login-template:serve"
+            "devServerTarget": "aparna-angular-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-material-login-template:serve:production"
+              "devServerTarget": "aparna-angular-app:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-material-login-template",
+  "defaultProject": "aparna-angular-app",
   "cli": {
     "analytics": false
   }
