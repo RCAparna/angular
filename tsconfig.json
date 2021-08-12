@@ -23,6 +23,9 @@
         "src/environments/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false,
   }
 }
 

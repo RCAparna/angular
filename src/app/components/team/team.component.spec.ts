@@ -25,9 +25,11 @@ import { User } from '@app/models/user';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-const createDashBoardResp = {
-  "message": "Dashboard created Successfully",
-  "dashboard": {
+
+
+const retDashResp = {
+  "message": "Dashboard Details fetched",
+  "dashboard": [{
     "_id": "61155f89ef38bb00041c64fd",
     "description": "amount: 12\ndescription: \" Aparna ",
     "amount": "12",
@@ -36,37 +38,16 @@ const createDashBoardResp = {
     "creator": "61155eeaef38bb00041c64fc",
     "createdAt": "2021-08-12T17:51:05.095Z",
     "updatedAt": "2021-08-12T17:51:05.095Z",
-    "__v": 0 }
-}
-const createDashboardPayload = {
-  amount: 12,
-  description: "amount: 12\ndescription: \" Aparna ",
-  role: "Developer",
-  teammember: "admin"
-}
-
-const retDashResp = {
-  "message": "Dashboard Details fetched",
-  "dashboard": [{
-    "_id": "61155f89ef38bb00041c64fd",
-  "description": "amount: 12\ndescription: \" Aparna ",
-  "amount": "12",
-  "teammember": "admin",
-  "role": "Developer",
-  "creator": "61155eeaef38bb00041c64fc",
-  "createdAt": "2021-08-12T17:51:05.095Z",
-  "updatedAt": "2021-08-12T17:51:05.095Z",
-  "__v": 0 }],
-   "user": {
-   "username": "ARC",
-   "_id": "61155eeaef38bb00041c64fc",
-   "lastlogin": "2021-08-12T17:51:05.483Z" }
+    "__v": 0
+  }],
+  "user": {
+    "username": "ARC",
+    "_id": "61155eeaef38bb00041c64fc",
+    "lastlogin": "2021-08-12T17:51:05.483Z"
+  }
 }
 
 class MockService {
-  public createDashboard(): any {
-    return of(createDashBoardResp);
-  }
   public retreiveUserDashBoardDetails(): any {
     return of(retDashResp);
   }
@@ -78,9 +59,9 @@ beforeAll(() => {
     platformBrowserDynamicTesting());
 });
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('TeamComponent', () => {
+  let component: TeamComponent;
+  let fixture: ComponentFixture<TeamComponent>;
   let appService: AppService;
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
@@ -107,7 +88,7 @@ describe('DashboardComponent', () => {
 
   }));
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(TeamComponent);
     appService = TestBed.inject(AppService);
     httpMock = TestBed.inject(HttpTestingController);
     httpClient = TestBed.inject(HttpClient);
@@ -121,11 +102,11 @@ describe('DashboardComponent', () => {
   it('component created', () => {
     expect(component).toBeTruthy();
   });
-  it('createdashboard', () => {
-    let mySpy = spyOn(appService, 'createDashboard').and.callThrough(); //callThrough()
-    spyOn(component, 'createdashBoard').and.callThrough(); //callThrough()
-    component.createdashBoard();
-    expect(component.createdashBoard).toHaveBeenCalled();
+  it('getTeamDetails', () => {
+    let mySpy = spyOn(appService, 'retreiveUserDashBoardDetails').and.callThrough(); //callThrough()
+    spyOn(component, 'getTeamDetails').and.callThrough(); //callThrough()
+    component.getTeamDetails();
+    expect(component.getTeamDetails).toHaveBeenCalled();
     expect(appService).toBeDefined();
     expect(mySpy).toBeDefined();
     expect(mySpy).toHaveBeenCalledTimes(1);

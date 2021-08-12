@@ -1,1 +1,9 @@
-import './app/components/dashboard/dashboard.component.spec'
+import 'zone.js/dist/zone-testing';
+import './app/app.component.spec';
+import './app/components/log-in/log-in.component.spec';
+import './app/components/dashboard/dashboard.component.spec';
+import './app/components/about/about.component.spec';
+import './app/components/header/header.component.spec';
+import './app/components/logout/logout.component.spec';
+import './app/components/register/register.component.spec';
+import './app/components/team/team.component.spec';

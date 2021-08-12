@@ -40,7 +40,7 @@ export class LogInComponent implements OnInit {
 
   get password() { return this.loginForm.get('password'); }
 
-  login(evt: Event) {
+  login() {
     let userLoginDetails: any = this.loginForm.value;
 
     this.appService.login(this.api.authAPIs.login, userLoginDetails)

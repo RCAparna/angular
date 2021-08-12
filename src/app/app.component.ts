@@ -6,6 +6,6 @@ import { Component, OnChanges, OnInit, SimpleChange } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+  public title: string = 'aparna-angular-app'
 
 }

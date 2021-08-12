@@ -1,7 +1,7 @@
 <div class="container-fluid layout">
   <h3>{{pageTitle}}</h3>
 <div *ngIf="serverErrorMessage" class="isError">{{serverErrorMessage}}</div>
-  
+
   <form [formGroup]="registerForm" #formReg="ngForm">
       <div class="form-group">
         <label for="username">Name</label>
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="login-btn">
-      <button type="submit" class="btn btn-default" [disabled]="registerForm.invalid" (click)="registerUser($event)">Register</button>
+      <button type="submit" class="btn btn-default" [disabled]="registerForm.invalid" (click)="registerUser()">Register</button>
       <button class="btn btn-default" (click)="signIn()">Login</button>
       </div>
   </form>

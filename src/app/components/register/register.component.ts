@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('confirmPassword');
   }
 
-  registerUser(evt: Event) {
+  registerUser() {
     let userRegistrationDetails: any = this.registerForm.value;
     this.appService.register(this.api.authAPIs.register, userRegistrationDetails)
       .pipe(first())

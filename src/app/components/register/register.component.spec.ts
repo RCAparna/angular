@@ -25,50 +25,11 @@ import { User } from '@app/models/user';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-const createDashBoardResp = {
-  "message": "Dashboard created Successfully",
-  "dashboard": {
-    "_id": "61155f89ef38bb00041c64fd",
-    "description": "amount: 12\ndescription: \" Aparna ",
-    "amount": "12",
-    "teammember": "admin",
-    "role": "Developer",
-    "creator": "61155eeaef38bb00041c64fc",
-    "createdAt": "2021-08-12T17:51:05.095Z",
-    "updatedAt": "2021-08-12T17:51:05.095Z",
-    "__v": 0 }
-}
-const createDashboardPayload = {
-  amount: 12,
-  description: "amount: 12\ndescription: \" Aparna ",
-  role: "Developer",
-  teammember: "admin"
-}
-
-const retDashResp = {
-  "message": "Dashboard Details fetched",
-  "dashboard": [{
-    "_id": "61155f89ef38bb00041c64fd",
-  "description": "amount: 12\ndescription: \" Aparna ",
-  "amount": "12",
-  "teammember": "admin",
-  "role": "Developer",
-  "creator": "61155eeaef38bb00041c64fc",
-  "createdAt": "2021-08-12T17:51:05.095Z",
-  "updatedAt": "2021-08-12T17:51:05.095Z",
-  "__v": 0 }],
-   "user": {
-   "username": "ARC",
-   "_id": "61155eeaef38bb00041c64fc",
-   "lastlogin": "2021-08-12T17:51:05.483Z" }
-}
+const resp = { "message": "User successfully created", "userId": "61156a923ac77300043062db" };
 
 class MockService {
-  public createDashboard(): any {
-    return of(createDashBoardResp);
-  }
-  public retreiveUserDashBoardDetails(): any {
-    return of(retDashResp);
+  public register(): any {
+    return of(resp);
   }
 }
 
@@ -78,9 +39,9 @@ beforeAll(() => {
     platformBrowserDynamicTesting());
 });
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('RegisterComponent', () => {
+  let component: RegisterComponent;
+  let fixture: ComponentFixture<RegisterComponent>;
   let appService: AppService;
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
@@ -107,7 +68,7 @@ describe('DashboardComponent', () => {
 
   }));
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(RegisterComponent);
     appService = TestBed.inject(AppService);
     httpMock = TestBed.inject(HttpTestingController);
     httpClient = TestBed.inject(HttpClient);
@@ -121,14 +82,19 @@ describe('DashboardComponent', () => {
   it('component created', () => {
     expect(component).toBeTruthy();
   });
-  it('createdashboard', () => {
-    let mySpy = spyOn(appService, 'createDashboard').and.callThrough(); //callThrough()
-    spyOn(component, 'createdashBoard').and.callThrough(); //callThrough()
-    component.createdashBoard();
-    expect(component.createdashBoard).toHaveBeenCalled();
+  it('should call registerUser', () => {
+    let mySpy = spyOn(appService, 'register').and.callThrough(); //callThrough()
+    spyOn(component, 'registerUser').and.callThrough(); //callThrough()
+    component.registerUser();
+    expect(component.registerUser).toHaveBeenCalled();
     expect(appService).toBeDefined();
     expect(mySpy).toBeDefined();
     expect(mySpy).toHaveBeenCalledTimes(1);
 
   });
+  it('should route to login ', fakeAsync(() => {
+    const spy = spyOn(router, 'navigate');
+    component.signIn();
+    expect(spy).toHaveBeenCalledWith(['login']);
+  }));
 });
