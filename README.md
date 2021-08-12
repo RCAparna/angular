@@ -33,9 +33,9 @@ This is another page in the application which renders the data added by user fro
 2.	Test Database- nodeDBTest 
 
 # Github link – BackEnd(Node)
-RCAparna/node (github.com)
+https://github.com/RCAparna/angular
 # Github link – FrontEnd(Angular)
-RCAparna/angular (github.com)
+https://github.com/RCAparna/angular
 # Website link:
 https://angular-fullstack-aparna.herokuapp.com/
 
